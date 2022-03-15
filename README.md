@@ -33,6 +33,7 @@ será solo para reservas, ya que la venta debe ser en persona)
 Las estructura de la web serán la siguiente (provisionalmente):
 
 //Acceso público
+
     - Index (noticias, redes sociales, información de la empresa...)
     - Catálogo
     - Ver producto
