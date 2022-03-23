@@ -58,9 +58,9 @@ Todo
 
 ## Autor
 
-* **Gabriel Navalón Soriano **(https://github.com/gabinavalon)
+ ** Gabriel Navalón Soriano ** (https://github.com/gabinavalon)
 
 ## Licencia
 
-This project is licensed under the MIT License - todo
+This project is licensed under the GNU License -   GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
 
