@@ -14,6 +14,7 @@ class Usuario {
     private $telefono;
     private $foto;
     private $cookie_id;
+    private $rol;
        
     //Array que va a contener los artículos de este usuario
     private $articulos;
@@ -89,6 +90,15 @@ class Usuario {
     public function setApellidos($apellidos): void {
         $this->apellidos = $apellidos;
     }
+    
+    public function getRol() {
+        return $this->rol;
+    }
+
+    public function setRol($rol): void {
+        $this->rol = $rol;
+    }
+
 
 
 
