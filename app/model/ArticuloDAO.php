@@ -3,7 +3,7 @@
 /**
  * Description of ArticuloDAO
  *
- * @author DAW2
+ * @author Gabriel Navalón Soriano
  */
 class ArticuloDAO {
     private $conn;
@@ -12,8 +12,13 @@ class ArticuloDAO {
         $this->conn = $conn;
     }
     
-// SENTENCIAS PREPARADAS!
-    
+
+    /**
+     * Método para insertar un nuevo artículo en la base de datos.
+     * @param Articulo $articulo
+     * @return boolean true si se crea el artículo, false si no se recibe una instancia de artículo
+     */
+     
     public function insert($articulo) {
         //Comprobamos que el parámetro sea de la clase Usuario
         if (!$articulo instanceof Articulo) {
@@ -22,8 +27,8 @@ class ArticuloDAO {
         $titulo = $articulo->getTitulo();
         $descripcion = $articulo->getDescripcion();
         $precio = $articulo->getPrecio();
-        $id_usuario = $articulo->getId_usuario();
-        $sql = "INSERT INTO articulos (titulo, descripcion, precio, id_usuario) VALUES (?,?,?,?)";
+        $unidades = $articulo->getUnidades();
+        $sql = "INSERT INTO articulos (titulo, descripcion, precio, unidades) VALUES (?,?,?,?)";
         
         $stmt = $this->conn->prepare($sql); // preparamos la consulta
        
@@ -31,7 +36,7 @@ class ArticuloDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         // ahora ejecutamos la consulta
-        $stmt->bind_param('ssdi', $titulo, $descripcion, $precio, $id_usuario);
+        $stmt->bind_param('ssdi', $titulo, $descripcion, $precio, $unidades);
         $stmt->execute();
         $result = $stmt->get_result();
      
@@ -40,22 +45,28 @@ class ArticuloDAO {
         return true;
     }
 
+    /**
+     * Actualizaremos el artículo en la base de datos.
+     * @param Articulo $articulo
+     * @return boolean true si se modifica el artículo correctamente
+     */
     public function update($articulo) {
         //Comprobamos que el parámetro es de la clase Usuario
-        if (!$usuario instanceof Articulo) {
+        if (!$articulo instanceof Articulo) {
             return false;
         }
         $titulo = $articulo->getTitulo();
         $descripcion = $articulo->getDescripcion();
         $precio = $articulo->getPrecio();
+        $unidades = $articulo->getUnidades();
         $id = $articulo->getId();
         $sql = "UPDATE articulos SET"
-                . " titulo=?, descripcion=?,precio=? WHERE id = ? " ;
+                . " titulo=?, descripcion=?,precio=?,unidades=? WHERE id = ? " ;
         if (!$stmt = $this->conn->prepare($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         
-        $stmt->bind_param("ssdi", $titulo, $descripcion, $precio, $id);
+        $stmt->bind_param("ssdii", $titulo, $descripcion, $precio, $unidades, $id);
         $stmt->execute();
         
         $result = $stmt->get_result();
@@ -68,9 +79,9 @@ class ArticuloDAO {
     }
 
     /**
-     * Borra un registro de la tabla Usuarios
-     * @param type $usuario Objeto de la clase usuario
-     * @return bool Devuelve true si se ha borrado un usuario y false en caso contrario
+     * Borra un registro de la tabla Artículos
+     * @param type $articulo Objeto de la clase artículo
+     * @return bool Devuelve true si se ha borrado el artículo y false en caso contrario
      */
     public function delete($articulo) {
         //Comprobamos que el parámetro no es nulo y es de la clase Usuario
@@ -90,7 +101,7 @@ class ArticuloDAO {
 
     /**
      * Devuelve el articulo de la BD 
-     * @param  $id id del usuario
+     * @param  $id id del artículo
      * @return \ Articulo de la BD o null si no existe
      */
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
@@ -99,43 +110,17 @@ class ArticuloDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         return $result->fetch_object('Articulo');
-        /* También se podría sustituir el fetch_object por lo siguiente:
-         * 
-         * if ($fila = $result->fetch_assoc()) {
-          $usuario = new Usuario();
-          $usuario->setEmail($fila['email']);
-          $usuario->setPassword($fila['password']);
-          $usuario->setId($fila['id']);
-          $usuario->setFoto($fila['foto']);
-          $usuario->setNombre($fila['nombre']);
-
-          return $usuario;
-          } else {
-          return null;
-          } */
     }
     
-     public function findbyUser($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
-        $sql = "SELECT * FROM articulos WHERE id_usuario=$id";
-        
-        if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
-        }
-        $array_obj_articulos = array();
-        while ($articulo = $result->fetch_object('Articulo')) {
-            $array_obj_articulos[] = $articulo;
-        }
-        return $array_obj_articulos;
-     }
 
     /**
-     * Devuelve todos los usuarios de la BD
+     * Devuelve todos los articulos de la BD
      * @param type $orden Tipo de orden (ASC o DESC)
      * @param type $campo Campo de la BD por el que se van a ordenar
-     * @return array Array de objetos de la clase Usuario
+     * @return array Array de objetos de la clase Artículo
      */
     public function findAll($orden = 'ASC', $campo = 'id') {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos ORDER BY $campo $orden";
+        $sql = "SELECT * FROM articulos ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }

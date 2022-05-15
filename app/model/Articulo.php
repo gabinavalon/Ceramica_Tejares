@@ -3,7 +3,7 @@
 /**
  * Description of Articulo
  *
- * @author DAW2
+ * @author Gabriel Navalón Soriano
  */
 class Articulo {
 
@@ -11,11 +11,8 @@ class Articulo {
     private $titulo;
     private $descripcion;
     private $precio;
-    private $fecha;
-    private $id_usuario;
-    //Propiedad para acceder a los datos del usuario al que pertenece el artículo
-    private $usuario;
-    //Propiedad para acceder a las fotos del artículo
+    private $unidades;
+   
     private $fotos;
 
     function getFecha() {
@@ -25,6 +22,7 @@ class Articulo {
     function setFecha($fecha): void {
         $this->fecha = $fecha;
     }
+
 
     function getFotos() {
 
@@ -52,17 +50,10 @@ class Articulo {
         return $this->precio;
     }
 
-    function getId_usuario() {
-        return $this->id_usuario;
+    function getUnidades() {
+        return $this->unidades;
     }
 
-    function getUsuario() {
-        if (!isset($this->usuario)) {
-            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
-            $this->usuario = $usuarioDAO->find($this->getId_usuario());
-        }
-        return $this->usuario;
-    }
 
 
 
@@ -82,8 +73,9 @@ class Articulo {
         $this->precio = $precio;
     }
 
-    function setId_usuario($id_usuario): void {
-        $this->id_usuario = $id_usuario;
+    function setUnidades($unidades): void {
+        $this->unidades = $unidades;
     }
+
 
 }

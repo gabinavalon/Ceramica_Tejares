@@ -105,7 +105,6 @@ class UsuarioDAO {
         
         $stmt->bind_param("i",  $usuario->getId());
         $stmt->execute();
-        $result = $stmt->get_result();
         
         if ($this->conn->affected_rows == 1) {
             return true;
