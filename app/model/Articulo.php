@@ -11,7 +11,7 @@ class Articulo {
     private $titulo;
     private $descripcion;
     private $precio;
-    private $unidades;
+    private $reservado;
    
     private $fotos;
 
@@ -50,8 +50,8 @@ class Articulo {
         return $this->precio;
     }
 
-    function getUnidades() {
-        return $this->unidades;
+    function getReservado() {
+        return $this->reservado;
     }
 
 
@@ -73,8 +73,8 @@ class Articulo {
         $this->precio = $precio;
     }
 
-    function setUnidades($unidades): void {
-        $this->unidades = $unidades;
+    function setReservado($reservado): void {
+        $this->reservado = $reservado;
     }
 
 

@@ -27,8 +27,8 @@ class ArticuloDAO {
         $titulo = $articulo->getTitulo();
         $descripcion = $articulo->getDescripcion();
         $precio = $articulo->getPrecio();
-        $unidades = $articulo->getUnidades();
-        $sql = "INSERT INTO articulos (titulo, descripcion, precio, unidades) VALUES (?,?,?,?)";
+        $reservado = $articulo->getReservado();
+        $sql = "INSERT INTO articulos (titulo, descripcion, precio, reservado) VALUES (?,?,?,?)";
         
         $stmt = $this->conn->prepare($sql); // preparamos la consulta
        
@@ -36,7 +36,7 @@ class ArticuloDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         // ahora ejecutamos la consulta
-        $stmt->bind_param('ssdi', $titulo, $descripcion, $precio, $unidades);
+        $stmt->bind_param('ssdi', $titulo, $descripcion, $precio, $reservado);
         $stmt->execute();
         $result = $stmt->get_result();
      
@@ -58,15 +58,15 @@ class ArticuloDAO {
         $titulo = $articulo->getTitulo();
         $descripcion = $articulo->getDescripcion();
         $precio = $articulo->getPrecio();
-        $unidades = $articulo->getUnidades();
+        $reservado = $articulo->getReservado();
         $id = $articulo->getId();
         $sql = "UPDATE articulos SET"
-                . " titulo=?, descripcion=?,precio=?,unidades=? WHERE id = ? " ;
+                . " titulo=?, descripcion=?,precio=?,reservado=? WHERE id = ? " ;
         if (!$stmt = $this->conn->prepare($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         
-        $stmt->bind_param("ssdii", $titulo, $descripcion, $precio, $unidades, $id);
+        $stmt->bind_param("ssdii", $titulo, $descripcion, $precio, $reservado, $id);
         $stmt->execute();
         
         $result = $stmt->get_result();
