@@ -1,7 +1,8 @@
 <?php
 
+
 /**
- * Modelo de manejo de acciones de usuario, inicio de sesión, cierre, y comprobación de si existe el usuario
+ * Clase para manejo de sesiones de usuario en nuestra página (inicio de sesión, cierre de sesión, si existe la sesión, etc.)
  *
  * @author Gabriel Navalón Soriano
  */
@@ -20,7 +21,7 @@ class Sesion {
     
     /**
      * Devuelve el objeto usuario conectado o false si no ha iniciado sesión
-     * @return boolean
+     * 
      */
     static public function obtener(){
         if(isset($_SESSION['usuario_sesion']))
