@@ -20,30 +20,35 @@ require '../app/model/Noticia.php';
 require '../app/model/NoticiaDAO.php';
 require '../app/model/ReservaDAO.php';
 require '../app/model/Reserva.php';
-/*require '../app/controladores/ControladorArticulo.php';
+require '../app/controladores/ControladorArticulo.php';
 require '../app/controladores/ControladorUsuario.php';
-require '../app/controladores/ControladorComentario.php';
-require '../app/config.php';*/
+require '../app/controladores/ControladorAdmin.php';
+require '../app/controladores/ControladorNoticia.php';
+require '../app/config.php';
 
 
 //Enrutamiento
 $mapa = array(
-    'inicio' => array('controlador' => 'ControladorArticulo', 'metodo' => 'listar', 'publica' => true),
-    'borrar_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'borrar', 'publica' => false),
-    'insertar_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'insertar', 'publica' => false),
-    'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver', 'publica' => true),
-    'registrar' => array('controlador' => 'ControladorUsuario', 'metodo' => 'registrar', 'publica' => true),
-    'subir_foto' => array('controlador' => 'ControladorUsuario', 'metodo' => 'subir_foto', 'publica' => false),
-    'login' => array('controlador' => 'ControladorUsuario', 'metodo' => 'login', 'publica' => true),
-    'logout' => array('controlador' => 'ControladorUsuario', 'metodo' => 'logout', 'publica' => false),
-    'mis_articulos' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_articulos', 'publica' => false),
-    'comprar' => array('controlador' => 'ControladorArticulo', 'metodo' => 'comprar', 'publica' => false),
-    'mis_compras' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_compras', 'publica' => false),
-    'existe_email' => array('controlador' => 'ControladorUsuario', 'metodo' => 'existe_email', 'publica' => true),
-    'like' => array('controlador' => 'ControladorArticulo', 'metodo' => 'like', 'publica' => true),
-    'insertar_comentario' => array('controlador' => 'ControladorComentario', 'metodo' => 'insertar', 'publica' => true),
-    'borrar_comentario' => array('controlador' => 'ControladorComentario', 'metodo' => 'borrar', 'publica' => true),
-    
+    'registrar' => array('controlador' => 'ControladorUsuario', 'metodo' => 'registrar', 'publica' => true, 'admin' => false),
+    'login' => array('controlador' => 'ControladorUsuario', 'metodo' => 'login', 'publica' => true, 'admin' => false),
+    'logout' => array('controlador' => 'ControladorUsuario', 'metodo' => 'logout', 'publica' => false, 'admin' => false),
+    'existe_email' => array('controlador' => 'ControladorUsuario', 'metodo' => 'existe_email', 'publica' => true, 'admin' => false),
+    'subir_foto' => array('controlador' => 'ControladorUsuario', 'metodo' => 'subir_foto', 'publica' => false, 'admin' => false),
+
+    'inicio' => array('controlador' => 'ControladorGeneral', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
+
+    'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
+    'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
+
+    'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver', 'publica' => true, 'admin' => false),
+    'reservar' => array('controlador' => 'ControladorArticulo', 'metodo' => 'comprar', 'publica' => false, 'admin' => false),
+    'mis_compras' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_compras', 'publica' => false, 'admin' => false),
+    'like' => array('controlador' => 'ControladorArticulo', 'metodo' => 'like', 'publica' => true, 'admin' => false),
+
+    'insertar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
+    'borrar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
+    'modificar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
+
 );
 
 //Parseo de la ruta
@@ -52,14 +57,14 @@ if (!empty($_GET['accion'])) {
         $accion = $_GET['accion'];
     } else { //Si no existe en el mapa
         MensajesFlash::anadir_mensaje("La página que buscas no existe.");
-        header('Location: '.RUTA);
+        header('Location: ' . RUTA);
         die();
     }
 } else {    //Si no me pasan parámetro acción, cargo la acción por defecto
     $accion = "inicio";
 }
 
-//Si tiene cookie y no ha iniciado sesión, iniciamos sesión automáticamente
+//Inicio de sesión automático si se encuentra una cookie
 if (isset($_COOKIE['uid']) && Sesion::existe() == false) { //Si existe la cookie lo identificamos
     $uid = filter_var($_COOKIE['uid'], FILTER_SANITIZE_SPECIAL_CHARS);
     $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
@@ -73,8 +78,23 @@ if (isset($_COOKIE['uid']) && Sesion::existe() == false) { //Si existe la cookie
 if ($mapa[$accion]['publica'] == false) { //Debe tener la sesión iniciada
     if (!Sesion::existe()) {
         MensajesFlash::anadir_mensaje("Debes iniciar sesión para acceder a esta página");
-        header('Location: '.RUTA);
+        header('Location: ' . RUTA);
         die();
+    }
+}
+
+//Si va a acceder a una página de administración sin tener este rol
+if ($mapa[$accion]['admin'] == true) { //Debe ser administrador
+    if (!Sesion::existe()) {
+        MensajesFlash::anadir_mensaje("Debes iniciar sesión para acceder a esta página");
+        header('Location: ' . RUTA);
+        die();
+    }else{
+        if(Sesion::obtener()->getRol() != "admin"){
+            MensajesFlash::anadir_mensaje("No tienes permisos para acceder a esta página");
+            header('Location: ' . RUTA);
+            die();
+        }
     }
 }
 
