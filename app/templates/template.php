@@ -4,11 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <style type="text/css">
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .card-registration .select-arrow {
+            top: 13px;
+        }
     </style>
 </head>
 
@@ -39,8 +50,8 @@
                 </ul>
 
                 <?php if (Sesion::existe()) : ?>
-                    
-                    <div class= "d-flex" id="usuario">
+
+                    <div class="d-flex" id="usuario">
                         <div id="foto_usuario" style="background-image: url(<?= RUTA ?>web/imagenes/<?= Sesion::obtener()->getFoto() ?>)"></div>
                         <form id="formulario_actualizar_foto" action="subir_foto" method="post" enctype="multipart/form-data">
                             <input type="file" name="foto" id="input_foto">
@@ -49,7 +60,7 @@
                         <div id="datos_usuario"><?= Sesion::obtener()->getNombre() ?> <br><a href="logout">Cerrar sesión</a></div>
                     </div>
                 <?php else : ?>
-                    <form id="login" action="login" method="post" class= "d-flex">
+                    <form id="login" action="login" method="post" class="d-flex">
                         <input type="text" placeholder="email" name="email">
                         <input type="password" placeholder="password" name="password"><br>
                         <input type="submit" value="login" class="boton_formulario">
@@ -59,26 +70,15 @@
 
                 <form class="d-flex">
                     <!--Aquí meter el usuario -->
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
     <header>
-        
-    <menu>
-        <ul id="menu_usuario">
-            <li><a href="<?= RUTA ?>">Inicio</a></li>
-            <li><a href="<?= RUTA ?>insertar_articulo">Poner artículo a la venta</a></li>
-            <li><a href="<?= RUTA ?>mis_articulos">Mis artículos</a></li>
-            <li><a href="<?= RUTA ?>mensajes">Mensajes</a></li>
-            <li><a href="<?= RUTA ?>mis_compras">Mis compras</a></li>
-        </ul>
-    </menu>
-    <main>
-        <?= $contenido ?>
-    </main>
+
+        <main>
+            <?= $contenido ?>
+        </main>
 </body>
 
 <script type="text/javascript">

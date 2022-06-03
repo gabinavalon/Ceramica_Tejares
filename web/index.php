@@ -20,10 +20,10 @@ require '../app/model/Noticia.php';
 require '../app/model/NoticiaDAO.php';
 require '../app/model/ReservaDAO.php';
 require '../app/model/Reserva.php';
-require '../app/controladores/ControladorArticulo.php';
-require '../app/controladores/ControladorUsuario.php';
-require '../app/controladores/ControladorAdmin.php';
-require '../app/controladores/ControladorNoticia.php';
+require '../app/controller/ControladorArticulo.php';
+require '../app/controller/ControladorUsuario.php';
+require '../app/controller/ControladorAdmin.php';
+require '../app/controller/ControladorNoticia.php';
 require '../app/config.php';
 
 
@@ -61,7 +61,7 @@ if (!empty($_GET['accion'])) {
         die();
     }
 } else {    //Si no me pasan parámetro acción, cargo la acción por defecto
-    $accion = "inicio";
+    $accion = "registrar";
 }
 
 //Inicio de sesión automático si se encuentra una cookie
