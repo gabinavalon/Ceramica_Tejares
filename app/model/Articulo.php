@@ -11,6 +11,7 @@ class Articulo {
     private $titulo;
     private $descripcion;
     private $precio;
+    private $fecha;
     private $reservado;
    
     private $fotos;

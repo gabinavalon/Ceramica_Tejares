@@ -24,6 +24,7 @@ require '../app/controller/ControladorArticulo.php';
 require '../app/controller/ControladorUsuario.php';
 require '../app/controller/ControladorAdmin.php';
 require '../app/controller/ControladorNoticia.php';
+require '../app/controller/ControladorGeneral.php';
 require '../app/config.php';
 
 
@@ -61,7 +62,7 @@ if (!empty($_GET['accion'])) {
         die();
     }
 } else {    //Si no me pasan parámetro acción, cargo la acción por defecto
-    $accion = "registrar";
+    $accion = "inicio";
 }
 
 //Inicio de sesión automático si se encuentra una cookie
