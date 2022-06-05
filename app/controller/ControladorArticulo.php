@@ -2,7 +2,7 @@
 
 class ControladorArticulo{
 
-    public function ver() {
+    public function ver_articulo() {
 
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $conn = ConexionBD::conectar();

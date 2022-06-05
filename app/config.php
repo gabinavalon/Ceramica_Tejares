@@ -1,3 +1,3 @@
 <?php
 
-define("RUTA", '/CeramicaTejares/');
+define("RUTA", '/Ceramica_Tejares/');

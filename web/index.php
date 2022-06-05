@@ -41,7 +41,7 @@ $mapa = array(
     'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
     'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
 
-    'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver', 'publica' => true, 'admin' => false),
+    'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver_articulo', 'publica' => true, 'admin' => false),
     'reservar' => array('controlador' => 'ControladorArticulo', 'metodo' => 'comprar', 'publica' => false, 'admin' => false),
     'mis_compras' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_compras', 'publica' => false, 'admin' => false),
     'like' => array('controlador' => 'ControladorArticulo', 'metodo' => 'like', 'publica' => true, 'admin' => false),
