@@ -49,6 +49,8 @@ $mapa = array(
     'insertar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
     'borrar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
     'modificar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
+    'ver_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
+    'listar_noticias' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
 
 );
 
