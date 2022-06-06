@@ -15,7 +15,7 @@ ob_start();
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="/web/img/noticias/<?= $n1->getFoto() ?>" alt="carousel noticias" width="100%"></img>
+          <img src="<?= RUTA ?>web/img/noticias/<?= $n1->getFoto() ?>" alt="carousel noticias" width="100%"></img>
           <div class="container">
             <div class="carousel-caption">
               <h1><?= $n1->getTitulo() ?></h1>
@@ -24,7 +24,7 @@ ob_start();
           </div>
         </div>
         <div class="carousel-item">
-          <img src="/web/img/noticias/<?= $n2->getFoto() ?>" alt="carousel noticias" width="100%"></img>
+          <img src="<?= RUTA ?>web/img/noticias/<?= $n2->getFoto() ?>" alt="carousel noticias" width="100%"></img>
           <div class="container">
             <div class="carousel-caption">
               <h1><?= $n2->getTitulo() ?></h1>
@@ -33,7 +33,7 @@ ob_start();
           </div>
         </div>
         <div class="carousel-item">
-          <img src="/web/img/noticias/<?= $n3->getFoto() ?>" alt="carousel noticias" width="100%" height="50%"></img>
+          <img src="<?= RUTA ?>web/img/noticias/<?= $n3->getFoto() ?>" alt="carousel noticias" width="100%" height="50%"></img>
 
           <div class="container">
             <div class="carousel-caption">
@@ -74,7 +74,7 @@ ob_start();
       <div class="col-sm-6 col-lg-4">
         <div class="box">
           <div class="img-box">
-            <img src="/web/img/articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>" alt="Imagen de producto">
+            <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>" alt="Imagen de producto">
             <a href="<?= RUTA ?>ver_articulo/<?= $a->getId() ?>" class="add_cart_btn">
               <span>
                 Ver Artículo
@@ -115,7 +115,7 @@ ob_start();
 
 
     <div class="btn_box">
-      <a href="" class="view_more-link">
+      <a href="<?= RUTA ?>catalogo" class="view_more-link">
         Ver más
       </a>
     </div>

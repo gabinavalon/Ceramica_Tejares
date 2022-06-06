@@ -41,7 +41,11 @@ $mapa = array(
     'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
     'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
 
+    'noticias' => array('controlador' => 'ControladorNoticia', 'metodo' => 'listar_noticias', 'publica' => true, 'admin' => false),
+    'ver_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'ver_noticia', 'publica' => true, 'admin' => false),
+
     'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver_articulo', 'publica' => true, 'admin' => false),
+    'catalogo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
     'reservar' => array('controlador' => 'ControladorArticulo', 'metodo' => 'comprar', 'publica' => false, 'admin' => false),
     'mis_compras' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_compras', 'publica' => false, 'admin' => false),
     'like' => array('controlador' => 'ControladorArticulo', 'metodo' => 'like', 'publica' => true, 'admin' => false),
@@ -49,8 +53,8 @@ $mapa = array(
     'insertar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
     'borrar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
     'modificar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
-    'ver_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
-    'listar_noticias' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
+ 
+    
 
 );
 

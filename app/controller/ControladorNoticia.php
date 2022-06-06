@@ -148,4 +148,12 @@ class ControladorNoticia
 
         header("Location: " . RUTA);
     }
+
+    public function listar_noticias(){
+            
+            $noticiaDAO = new NoticiaDAO(ConexionBD::conectar());
+            $noticias = $noticiaDAO->findAll();
+    
+            require '../app/templates/noticias.php';
+    }
 }

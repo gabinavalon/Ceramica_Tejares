@@ -15,4 +15,13 @@ class ControladorArticulo{
 
         require '../app/templates/ver_articulo.php';
     }
+
+    public function listar(){
+
+        $conn = ConexionBD::conectar();
+        $articuloDAO = new ArticuloDAO($conn);
+        $articulos = $articuloDAO->findAll();
+
+        require '../app/templates/catalogo.php';
+    }
 }
