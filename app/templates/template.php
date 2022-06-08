@@ -59,7 +59,7 @@
                         <a class="nav-link" href="<?= RUTA ?>noticias">Noticias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Técnicas y Materiales</a>
+                        <a class="nav-link" href="<?= RUTA ?>tecnicas">Meteriales y Técnicas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Clases</a>

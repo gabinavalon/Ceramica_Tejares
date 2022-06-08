@@ -37,12 +37,13 @@ $mapa = array(
     'subir_foto' => array('controlador' => 'ControladorUsuario', 'metodo' => 'subir_foto', 'publica' => false, 'admin' => false),
 
     'inicio' => array('controlador' => 'ControladorGeneral', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
+    'tecnicas' => array('controlador' => 'ControladorGeneral', 'metodo' => 'tecnicas', 'publica' => true, 'admin' => false),
 
     'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
     'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
 
     'noticias' => array('controlador' => 'ControladorNoticia', 'metodo' => 'listar_noticias', 'publica' => true, 'admin' => false),
-    'ver_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'ver_noticia', 'publica' => true, 'admin' => false),
+    'ver_noticia' => array('controlador' => 'ControladorNoticia', 'metodo' => 'ver_noticia', 'publica' => true, 'admin' => false),
 
     'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver_articulo', 'publica' => true, 'admin' => false),
     'catalogo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'listar', 'publica' => true, 'admin' => false),

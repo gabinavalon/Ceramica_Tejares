@@ -24,4 +24,9 @@ class ControladorGeneral{
         require '../app/templates/inicio.php';
     }
 
+    public function tecnicas(){
+
+        require '../app/templates/materialesytecnicas.php';
+    }
+
 }

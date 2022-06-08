@@ -19,7 +19,7 @@ ob_start();
           <div class="container">
             <div class="carousel-caption">
               <h1><?= $n1->getTitulo() ?></h1>
-              <p><a class="btn btn-lg btn-primary" href="#">Ir a la noticia</a></p>
+              <p><a class="btn btn-lg btn-primary" href="<?= RUTA ?>ver_noticia/<?= $n1->getId() ?>">Ir a la noticia</a></p>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ ob_start();
           <div class="container">
             <div class="carousel-caption">
               <h1><?= $n2->getTitulo() ?></h1>
-              <p><a class="btn btn-lg btn-primary" href="#">Ir a la noticia</a></p>
+              <p><a class="btn btn-lg btn-primary" href="<?= RUTA ?>ver_noticia/<?= $n2->getId() ?>">Ir a la noticia</a></p>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ ob_start();
           <div class="container">
             <div class="carousel-caption">
               <h1><?= $n3->getTitulo() ?></h1>
-              <p><a class="btn btn-lg btn-primary" href="#">Ir a la noticia</a></p>
+              <p><a class="btn btn-lg btn-primary" href="<?= RUTA ?>ver_noticia/<?= $n3->getId() ?>">Ir a la noticia</a></p>
             </div>
           </div>
         </div>

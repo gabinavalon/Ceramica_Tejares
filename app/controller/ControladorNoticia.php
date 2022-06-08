@@ -156,4 +156,12 @@ class ControladorNoticia
     
             require '../app/templates/noticias.php';
     }
+
+    public function ver_noticia(){
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $noticiaDAO = new NoticiaDAO(ConexionBD::conectar());
+        $noticia = $noticiaDAO->find($id);
+
+        require '../app/templates/ver_noticia.php';
+    }
 }

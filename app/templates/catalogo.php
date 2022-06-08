@@ -11,7 +11,7 @@ ob_start();
         </div>
     </div>
 
-    <div class="container mt-3">
+    <div class="row m-5">
         <div class="heading_container heading_center">
             <h2>
                 Todos los productos
@@ -20,12 +20,8 @@ ob_start();
         <?php
         $contador = 0;
         foreach ($articulos as $a) {
-            if ($contador == 0) {
-                echo '<div class="row">';
-            }
         ?>
-
-            <div class="col-sm-6 col-lg-4 articulo">
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="box">
                     <div class="img-box">
                         <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>" alt="Imagen de producto">
@@ -56,11 +52,6 @@ ob_start();
             </div>
 
         <?php
-            $contador++;
-            if ($contador == 3) {
-                echo '</div>';
-                $contador = 0;
-            }
         }
         ?>
     </div>
