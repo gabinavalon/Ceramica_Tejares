@@ -16,12 +16,18 @@ ob_start();
                     <p><?= $articulo->getDescripcion()?></p>
 
 
-                        <a class="btn btn-outline-success" href="#" onclick="alert('¡Estamos trabajando en ello!')" role="button">Me interesa</a>
+
 
                     <h3 class="box-title mt-5">Información adicional</h3>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-book "></i> Precio: <?= $articulo->getPrecio()?> €</li>
-                        <li><i class="fa fa-book "></i> Disponibilidad: <?= $articulo->getReservado()?></li>
+                        <li><i class="fa fa-book "></i> Disponibilidad: 
+                       <?php if ($articulo->getReservado() == 0) {
+                            echo "Disponible";
+                        } else {
+                            echo "No disponible";
+                        } ?>
+                        </li>
                     </ul>
                 </div>
             </div>

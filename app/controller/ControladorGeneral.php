@@ -26,7 +26,7 @@ class ControladorGeneral{
 
     public function tecnicas(){
 
-        require '../app/templates/materialesytecnicas.php';
+        require '../app/templates/tecnicasyactividades.php';
     }
 
 }
