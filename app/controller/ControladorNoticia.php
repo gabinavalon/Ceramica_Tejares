@@ -162,6 +162,56 @@ class ControladorNoticia
         $noticiaDAO = new NoticiaDAO(ConexionBD::conectar());
         $noticia = $noticiaDAO->find($id);
 
+        $comentarioDAO = new ComentarioDAO(ConexionBD::conectar());
+        $comentarios = $comentarioDAO->findbyNoticia($id);
+
+
         require '../app/templates/ver_noticia.php';
     }
+
+    public function insertar_comentario(){
+       
+        $id_noticia = filter_var($_POST['id_noticia'], FILTER_SANITIZE_NUMBER_INT);
+        $texto = filter_var($_POST['texto'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $id_usuario = filter_var($_POST['id_usuario'], FILTER_SANITIZE_SPECIAL_CHARS);
+      
+        $comentarioDAO = new ComentarioDAO(ConexionBD::conectar());
+       
+        $comentario = new Comentario();
+       
+        $comentario->setId_noticia($id_noticia);
+        $comentario->setTexto($texto);
+        $comentario->setId_usuario($id_usuario);
+       
+       if($comentarioDAO->insert($comentario)){
+           header ('Content-type: application/json');
+           print json_encode(array('respuesta'=>'true',
+               'comentario'=> $comentario,
+               ));
+       }else{
+           header ('Content-type: application/json');
+           print json_encode(array('respuesta'=>'false',
+               ));
+       }
+   }
+   
+   public function borrar_comentario(){
+       
+       $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+       
+       $comentarioDAO = new ComentarioDAO(ConexionBD::conectar());
+       
+       $comentario = $comentarioDAO->find($id);
+       
+       if($comentarioDAO->delete($comentario)){
+           header ('Content-type: application/json');
+           print json_encode(array('respuesta'=>'ok'));
+       } else {
+            header ('Content-type: application/json');
+            print json_encode(array('respuesta'=>'error'));
+       }
+       
+       
+   }
+    
 }

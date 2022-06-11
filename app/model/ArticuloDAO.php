@@ -60,13 +60,14 @@ class ArticuloDAO {
         $precio = $articulo->getPrecio();
         $reservado = $articulo->getReservado();
         $id = $articulo->getId();
+        $likes = $articulo->getLikes();
         $sql = "UPDATE articulos SET"
-                . " titulo=?, descripcion=?,precio=?,reservado=? WHERE id = ? " ;
+                . " titulo=?, descripcion=?,precio=?,reservado=?,likes=? WHERE id = ? " ;
         if (!$stmt = $this->conn->prepare($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         
-        $stmt->bind_param("ssdii", $titulo, $descripcion, $precio, $reservado, $id);
+        $stmt->bind_param("ssdiii", $titulo, $descripcion, $precio, $reservado, $likes, $id);
         $stmt->execute();
         
         $result = $stmt->get_result();

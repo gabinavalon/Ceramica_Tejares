@@ -20,6 +20,10 @@ require '../app/model/Noticia.php';
 require '../app/model/NoticiaDAO.php';
 require '../app/model/ReservaDAO.php';
 require '../app/model/Reserva.php';
+require '../app/model/Comentario.php';
+require '../app/model/ComentarioDAO.php';
+require '../app/model/Like.php';
+require '../app/model/LikeDAO.php';
 require '../app/controller/ControladorArticulo.php';
 require '../app/controller/ControladorUsuario.php';
 require '../app/controller/ControladorAdmin.php';
@@ -39,11 +43,10 @@ $mapa = array(
     'inicio' => array('controlador' => 'ControladorGeneral', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
     'tecnicas' => array('controlador' => 'ControladorGeneral', 'metodo' => 'tecnicas', 'publica' => true, 'admin' => false),
 
-    'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
-    'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
-
     'noticias' => array('controlador' => 'ControladorNoticia', 'metodo' => 'listar_noticias', 'publica' => true, 'admin' => false),
     'ver_noticia' => array('controlador' => 'ControladorNoticia', 'metodo' => 'ver_noticia', 'publica' => true, 'admin' => false),
+    'insertar_comentario' => array('controlador' => 'ControladorNoticia', 'metodo' => 'insertar_comentario', 'publica' => false,  'admin' => false),
+    'borrar_comentario' => array('controlador' => 'ControladorNoticia', 'metodo' => 'borrar_comentario', 'publica' => false,  'admin' => false),
 
     'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver_articulo', 'publica' => true, 'admin' => false),
     'catalogo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
@@ -51,11 +54,26 @@ $mapa = array(
     'mis_compras' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_compras', 'publica' => false, 'admin' => false),
     'like' => array('controlador' => 'ControladorArticulo', 'metodo' => 'like', 'publica' => true, 'admin' => false),
 
-    'insertar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar', 'publica' => false, 'admin' => true),
-    'borrar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar', 'publica' => false, 'admin' => true),
-    'modificar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'modificar', 'publica' => false, 'admin' => true),
- 
+
+    'admin' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin', 'publica' => false, 'admin' => true),
+    'admin_usuarios' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_usuarios', 'publica' => false, 'admin' => true),
+    'admin_articulos' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_articulos', 'publica' => false, 'admin' => true),
+    'admin_noticias' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_noticias', 'publica' => false, 'admin' => true),
+
     
+    'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar_articulo', 'publica' => false, 'admin' => true),
+    'insertar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar_articulo', 'publica' => false, 'admin' => true),
+    'editar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'editar_articulo', 'publica' => false, 'admin' => true),
+
+    'insertar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'insertar_noticia', 'publica' => false, 'admin' => true),
+    'borrar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar_noticia', 'publica' => false, 'admin' => true),
+    'editar_noticia' => array('controlador' => 'ControladorAdmin', 'metodo' => 'editar_noticia', 'publica' => false, 'admin' => true),
+
+    'borrar_usuario' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar_usuario', 'publica' => false, 'admin' => true),
+    'editar_usuario' => array('controlador' => 'ControladorAdmin', 'metodo' => 'editar_usuario', 'publica' => false, 'admin' => true),
+
+
+
 
 );
 
@@ -97,8 +115,8 @@ if ($mapa[$accion]['admin'] == true) { //Debe ser administrador
         MensajesFlash::anadir_mensaje("Debes iniciar sesión para acceder a esta página");
         header('Location: ' . RUTA);
         die();
-    }else{
-        if(Sesion::obtener()->getRol() != "admin"){
+    } else {
+        if (Sesion::obtener()->getRol() != "admin") {
             MensajesFlash::anadir_mensaje("No tienes permisos para acceder a esta página");
             header('Location: ' . RUTA);
             die();

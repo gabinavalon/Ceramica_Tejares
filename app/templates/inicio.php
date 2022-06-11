@@ -89,13 +89,16 @@ ob_start();
               <h5>
                 <?= $a->getPrecio() ?> <span>€</span>
               </h5>
-              <div class="star_container">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </div>
+            <?php if (Sesion::existe()) : ?>
+
+            
+              <i class="fa fa-heart like" data-id='<?= $a->getId() ?>'> <span id="likes_<?=$a->getId()?>"><?= $a->getLikes() ?></span>  </i>
+
+            <?php else : ?>
+
+              <i class="fa fa-heart like2" onclick="alert('Debes inciar sesión para poder dar me gusta')"> <span id="likes_<?=$a->getId()?>"><?= $a->getLikes() ?></span>  </i>
+
+            <?php endif; ?>
             </div>
           </div>
         </div>
@@ -108,6 +111,7 @@ ob_start();
         $contador = 0;
       }
     }
+
     ?>
 
 
@@ -221,7 +225,7 @@ ob_start();
   <div class="col-2"></div>
 </div>
 
-
+<script src="<?= RUTA ?>web/js/like.js"></script>
 
 
 <?php

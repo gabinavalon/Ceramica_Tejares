@@ -64,11 +64,19 @@ class NoticiaDAO
         $sentencia->execute();
     }
 
-    public function delete($id)
-    {
-        $sql = "DELETE FROM noticias WHERE id = :id";
-        $sentencia = $this->conn->prepare($sql);
-        $sentencia->bindParam(':id', $id);
-        $sentencia->execute();
+    public function delete($noticia) {
+        //Comprobamos que el parámetro no es nulo y es de la clase Noticia
+        if ($noticia == null || get_class($noticia) != 'Noticia') {
+            return false;
+        }
+        $sql = "DELETE FROM noticias WHERE id = " . $noticia->getId();
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        if ($this->conn->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

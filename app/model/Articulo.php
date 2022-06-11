@@ -13,6 +13,8 @@ class Articulo {
     private $precio;
     private $fecha;
     private $reservado;
+
+    private $likes;
    
     private $fotos;
 
@@ -22,6 +24,14 @@ class Articulo {
 
     function setFecha($fecha): void {
         $this->fecha = $fecha;
+    }
+
+    function getLikes() {
+        return $this->likes;
+    }
+
+    function setLikes($likes): void {
+        $this->likes = $likes;
     }
 
 

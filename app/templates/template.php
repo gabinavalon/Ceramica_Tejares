@@ -47,19 +47,39 @@
             vertical-align: middle;
             display: none;
         }
-        #formulario_actualizar_foto{
-                display: none;
-            }
 
-        #foto_usuario{
-                height: 50px;
-                width: 50px;
-                background-size: cover;
-                background-position: center;
-                border-radius: 40px;
-                box-shadow: 0px 0px 5px 0px #aaa;
-                margin: 5px;
-            }
+        #formulario_actualizar_foto {
+            display: none;
+        }
+
+        #foto_usuario {
+            height: 50px;
+            width: 50px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 40px;
+            box-shadow: 0px 0px 5px 0px #aaa;
+            margin: 5px;
+        }
+
+
+
+        .like:hover {
+            color: red !important;
+            transition: 0.3s;
+        }
+
+        .like2:hover {
+            color: red !important;
+            font-size: 1.5em;
+            transition: 0.3s;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -84,7 +104,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= RUTA ?>tecnicas">Técnicas y Actividades</a>
                     </li>
+                    <?php if (Sesion::existe()) {
+                        if (Sesion::obtener()->getRol() == 'admin') { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Administración
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin">Inicio</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin_articulos">Artículos</a></li>
+                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin_noticias">Noticias</a></li>
+                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin_usuarios">Usuarios</a></li>
+                                </ul>
+                            </li>
 
+                    <?php }
+                    } ?>
                 </ul>
 
                 <?php if (Sesion::existe()) : ?>
@@ -128,5 +164,6 @@
         $('#formulario_actualizar_foto').submit();
     })
 </script>
+
 
 </html>

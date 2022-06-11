@@ -21,6 +21,9 @@ class ControladorGeneral{
             $ultimosArticulos[] = $articulos[$i];
         } 
 
+        $likeDAO = new LikeDAO(ConexionBD::conectar());
+        $likes = $likeDAO->findAll();
+
         require '../app/templates/inicio.php';
     }
 
