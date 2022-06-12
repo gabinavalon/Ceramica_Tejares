@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script src="https://kit.fontawesome.com/25ed4f2ff5.js" crossorigin="anonymous"></script>
+
     <link href="<?= RUTA ?>web/css/responsive.css" rel="stylesheet" />
     <link href="<?= RUTA ?>web/css/style.css" rel="stylesheet" />
 
@@ -25,15 +25,15 @@
             top: 13px;
         }
 
-        .carousel .item {
-            height: 300px;
+        .carousel .carousel-item {
+            height: 400px;
         }
 
-        .item img {
+        .carousel-item img {
             position: absolute;
             top: 0;
             left: 0;
-            min-height: 300px;
+            min-height: 400px;
         }
 
         .filtro {
@@ -111,8 +111,10 @@
                                     Administración
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin">Inicio</a></li>
-                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?= RUTA ?>admin">Inicio (Contactos)</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                     <li><a class="dropdown-item" href="<?= RUTA ?>admin_articulos">Artículos</a></li>
                                     <li><a class="dropdown-item" href="<?= RUTA ?>admin_noticias">Noticias</a></li>
                                     <li><a class="dropdown-item" href="<?= RUTA ?>admin_usuarios">Usuarios</a></li>

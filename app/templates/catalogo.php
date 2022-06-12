@@ -24,7 +24,7 @@ ob_start();
             <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>" alt="Imagen de producto">
+                        <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFoto() ?>" alt="Imagen de artículo">
                         <a href="<?= RUTA ?>ver_articulo/<?= $a->getId() ?>" class="add_cart_btn">
                             <span>
                                 Ver Artículo

@@ -1,9 +1,18 @@
 <?php
 ob_start();
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
+<div class="row ">
+  <div class="col-5"></div>
+  <div class="col-5">
+  <p class="text-center">
+   <b><?php MensajesFlash::imprimir_mensajes(); ?></b>
+  </p>
+  </div>
+</div>
 
-<section class="row">
+
+
+<section class="row h-75">
   <div class="col-md-2"></div>
   <div class="col-md-8">
 
@@ -74,7 +83,7 @@ ob_start();
       <div class="col-sm-6 col-lg-4">
         <div class="box">
           <div class="img-box">
-            <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>" alt="Imagen de producto">
+            <img src="<?= RUTA ?>web/img/articulos/<?= $a->getFoto()?>" alt="Imagen de producto">
             <a href="<?= RUTA ?>ver_articulo/<?= $a->getId() ?>" class="add_cart_btn">
               <span>
                 Ver Artículo
@@ -140,7 +149,7 @@ ob_start();
 
       <!--Grid column-->
       <div class="col-md-9 mb-md-0 mb-5">
-        <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+        <form id="contact-form" name="contact-form" action="<?= RUTA ?>/contacto" method="POST">
 
           <!--Grid row-->
           <div class="row">
@@ -148,8 +157,8 @@ ob_start();
             <!--Grid column-->
             <div class="col-md-6">
               <div class="md-form mb-0">
-                <input type="text" id="name" name="name" class="form-control">
-                <label for="name" class="">Your name</label>
+                <input type="text" id="name" name="nombre" class="form-control" value='<?php if(Sesion::existe()){echo (Sesion::obtener()->getNombre() . ' ' . Sesion::obtener()->getApellidos());} ?>'>
+                <label for="name" class="">Tu nombre</label>
               </div>
             </div>
             <!--Grid column-->
@@ -157,8 +166,8 @@ ob_start();
             <!--Grid column-->
             <div class="col-md-6">
               <div class="md-form mb-0">
-                <input type="text" id="email" name="email" class="form-control">
-                <label for="email" class="">Your email</label>
+                <input type="text" id="email" name="email" class="form-control" value='<?php if(Sesion::existe()){echo (Sesion::obtener()->getEmail());} ?>'>
+                <label for="email" class="">Tu email</label>
               </div>
             </div>
             <!--Grid column-->
@@ -170,8 +179,8 @@ ob_start();
           <div class="row">
             <div class="col-md-12">
               <div class="md-form mb-0">
-                <input type="text" id="subject" name="subject" class="form-control">
-                <label for="subject" class="">Subject</label>
+                <input type="text" id="subject" name="asunto" class="form-control">
+                <label for="subject" class="">Asunto</label>
               </div>
             </div>
           </div>
@@ -184,8 +193,8 @@ ob_start();
             <div class="col-md-12">
 
               <div class="md-form">
-                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-                <label for="message">Your message</label>
+                <textarea type="text" id="message" name="texto" rows="2" class="form-control md-textarea"></textarea>
+                <label for="message">Tu mensaje</label>
               </div>
 
             </div>
@@ -195,7 +204,7 @@ ob_start();
         </form>
 
         <div class="text-center text-md-left">
-          <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+          <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Enviar</a>
         </div>
         <div class="status"></div>
       </div>

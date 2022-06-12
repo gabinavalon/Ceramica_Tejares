@@ -24,11 +24,13 @@ class ArticuloDAO {
         if (!$articulo instanceof Articulo) {
             return false;
         }
+
         $titulo = $articulo->getTitulo();
         $descripcion = $articulo->getDescripcion();
         $precio = $articulo->getPrecio();
         $reservado = $articulo->getReservado();
-        $sql = "INSERT INTO articulos (titulo, descripcion, precio, reservado) VALUES (?,?,?,?)";
+        $foto = "foto_generica.png";
+        $sql = "INSERT INTO articulos (titulo, descripcion, precio, reservado, foto) VALUES (?,?,?,?,?)";
         
         $stmt = $this->conn->prepare($sql); // preparamos la consulta
        
@@ -36,7 +38,7 @@ class ArticuloDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         // ahora ejecutamos la consulta
-        $stmt->bind_param('ssdi', $titulo, $descripcion, $precio, $reservado);
+        $stmt->bind_param('ssdis', $titulo, $descripcion, $precio, $reservado, $foto);
         $stmt->execute();
         $result = $stmt->get_result();
      
@@ -61,13 +63,15 @@ class ArticuloDAO {
         $reservado = $articulo->getReservado();
         $id = $articulo->getId();
         $likes = $articulo->getLikes();
+        $foto = $articulo->getFoto();
+
         $sql = "UPDATE articulos SET"
-                . " titulo=?, descripcion=?,precio=?,reservado=?,likes=? WHERE id = ? " ;
+                . " titulo=?, descripcion=?,precio=?,reservado=?,likes=?, foto=? WHERE id = ? " ;
         if (!$stmt = $this->conn->prepare($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         
-        $stmt->bind_param("ssdiii", $titulo, $descripcion, $precio, $reservado, $likes, $id);
+        $stmt->bind_param("ssdiisi", $titulo, $descripcion, $precio, $reservado, $likes, $foto, $id);
         $stmt->execute();
         
         $result = $stmt->get_result();

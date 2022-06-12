@@ -13,10 +13,12 @@ class Articulo {
     private $precio;
     private $fecha;
     private $reservado;
+    private $foto;
 
     private $likes;
    
-    private $fotos;
+
+    
 
     function getFecha() {
         return $this->fecha;
@@ -35,15 +37,6 @@ class Articulo {
     }
 
 
-    function getFotos() {
-
-        if (!isset($this->fotos)) {
-            $fotoDAO = new FotoDAO(ConexionBD::conectar());
-            $this->fotos = $fotoDAO->findByIdArticulo($this->getId());
-        }
-        
-        return $this->fotos;
-    }
 
     function getId() {
         return $this->id;
@@ -63,6 +56,10 @@ class Articulo {
 
     function getReservado() {
         return $this->reservado;
+    }
+
+    function getFoto() {
+        return $this->foto;
     }
 
 
@@ -86,6 +83,10 @@ class Articulo {
 
     function setReservado($reservado): void {
         $this->reservado = $reservado;
+    }
+
+    function setFoto($foto): void {
+        $this->foto = $foto;
     }
 
 

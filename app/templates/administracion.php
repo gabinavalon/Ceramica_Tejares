@@ -41,6 +41,49 @@ ob_start();
 
 
 
+<div class="container my-3">
+    <h1 class=" my-3">Mails de contacto</h1>
+
+    <table class="table mx-5">
+    <thead>
+        <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Asunto</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($contactos as $contacto) : ?>
+        
+        <tr>
+            <th scope="row"><?= $contacto->getId() ?></th>
+            <td><?= $contacto->getNombre() ?></td>
+            <td><?= $contacto->getEmail() ?></td>
+            <td><?= $contacto->getAsunto() ?></td>
+            <td><?= $contacto->getFecha() ?></td>
+            <td>
+                <?php if ($contacto->getLeído() == 0) : ?>
+                    <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>" class="btn btn-primary">Ver (Sin leer)</a>
+
+                <?php else : ?>
+                <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>"><button class="btn btn-secondary">Ver (Leído)</button></a>
+                <?php endif; ?>
+
+                
+                <a href="<?= RUTA ?>borrar_contacto/<?= $contacto->getId() ?>" class="btn btn-danger">Eliminar</a>
+            </td>
+
+    </tr>
+        <?php endforeach; ?>
+
+    </tbody>
+</table>
+</div>
+
+
     <?php
     $contenido = ob_get_clean();
 

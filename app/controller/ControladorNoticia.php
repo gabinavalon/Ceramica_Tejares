@@ -152,7 +152,7 @@ class ControladorNoticia
     public function listar_noticias(){
             
             $noticiaDAO = new NoticiaDAO(ConexionBD::conectar());
-            $noticias = $noticiaDAO->findAll();
+            $noticias = $noticiaDAO->findAll('DESC', 'fecha');
     
             require '../app/templates/noticias.php';
     }

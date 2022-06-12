@@ -43,25 +43,58 @@ class NoticiaDAO
 
     public function insert($noticia)
     {
-        $sql = "INSERT INTO noticias (titulo, descripcion, fecha, foto) VALUES (:titulo, :descripcion, :fecha, :foto)";
-        $sentencia = $this->conn->prepare($sql);
-        $sentencia->bindParam(':titulo', $noticia->getTitulo());
-        $sentencia->bindParam(':descripcion', $noticia->getDescripcion());
-        $sentencia->bindParam(':fecha', $noticia->getFecha());
-        $sentencia->bindParam(':foto', $noticia->getFoto());
-        $sentencia->execute();
+        //Comprobamos que el parámetro sea de la clase Noticia
+        if (!$noticia instanceof Noticia) {
+            return false;
+        }
+        $titulo = $noticia->getTitulo();
+        $descripcion = $noticia->getDescripcion(); 
+        $foto = "foto_generica.png";
+
+
+        $sql = "INSERT INTO noticias (titulo, descripcion, foto) VALUES (?,?,?)";
+        
+        $stmt = $this->conn->prepare($sql); // preparamos la consulta
+       
+        if (!$stmt) { // si no se puede preparar, error
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        // ahora ejecutamos la consulta
+        $stmt->bind_param('sss', $titulo, $descripcion, $foto);
+        $stmt->execute();
+        $result = $stmt->get_result();
+     
+        //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
+        $noticia->setId($this->conn->insert_id);
+        return true;
     }
 
     public function update($noticia)
     {
-        $sql = "UPDATE noticias SET titulo = :titulo, descripcion = :descripcion, fecha = :fecha, foto = :foto WHERE id = :id";
-        $sentencia = $this->conn->prepare($sql);
-        $sentencia->bindParam(':id', $noticia->getId());
-        $sentencia->bindParam(':titulo', $noticia->getTitulo());
-        $sentencia->bindParam(':descripcion', $noticia->getDescripcion());
-        $sentencia->bindParam(':fecha', $noticia->getFecha());
-        $sentencia->bindParam(':foto', $noticia->getFoto());
-        $sentencia->execute();
+        //Comprobamos que el parámetro es de la clase Noticia
+        if (!$noticia instanceof Noticia) {
+            return false;
+        }
+        $titulo = $noticia->getTitulo();
+        $descripcion = $noticia->getDescripcion();
+        $id = $noticia->getId();
+        $foto = $noticia->getFoto();
+        $sql = "UPDATE noticias SET"
+                . " titulo=?, descripcion=?,foto=? WHERE id = ? " ;
+        if (!$stmt = $this->conn->prepare($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        
+        $stmt->bind_param("sssi", $titulo, $descripcion, $foto, $id);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+        
+        if ($this->conn->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function delete($noticia) {

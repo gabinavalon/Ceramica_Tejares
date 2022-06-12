@@ -18,10 +18,12 @@ ob_start();
                 <!-- Preview image figure-->
                 <figure class="mb-4"><img class="img-fluid rounded" src="<?= RUTA ?>web/img/noticias/<?= $noticia->getFoto() ?>" alt="Imagen de la noticia" /></figure>
                 <!-- Post content-->
-                <section class="mb-5">
-                    <p class="fs-5 mb-4"><?= $noticia->getDescripcion() ?></p>
+                <div>
 
-                </section>
+                 <?= $noticia->getDescripcion() ?>
+
+                </div>
+                <br><br>
             </article>
             <!-- Comments section-->
             <section class="mb-5">
@@ -37,7 +39,8 @@ ob_start();
 
 
                         <!-- Single comment-->
-                        <?php foreach ($comentarios as $c) : ?>
+                        <?php if(isset ($comentarios)){ 
+                        foreach ($comentarios as $c) : ?>
                             <div class="row my-3" >
                                 <div class="col-2">
                                     <img class="img-fluid rounded-circle" src="<?= RUTA ?>web/img/users/<?= $c->getUser()->getFoto() ?>" alt="Foto usuario" width="50px" height="50px" />
@@ -51,14 +54,15 @@ ob_start();
                                 <div class="col-2">
                                     
                                     <?= $c->getFecha() ?>
-                                    <?php if ($c->getUser()->getId() == Sesion::obtener()->getId()) : ?>
+                                    <?php if (Sesion::existe()){
+                                            if($c->getUser()->getId() == Sesion::obtener()->getId()) { ?>
                                         <button class="btn btn-danger btn-sm    " id="borrar_comentario" data-id="<?= $c->getId() ?>">Eliminar</button>
-                                    <?php endif; ?>
+                                    <?php }} ?>
                                 </div>
 
                             </div>
 
-                        <?php endforeach; ?>
+                        <?php endforeach;} ?>
                     </div>
                 </div>
             </section>
@@ -94,7 +98,9 @@ ob_start();
 
         texto = $('#enviar_mensaje').val();
         id_noticia = <?= $noticia->getId() ?>;
-        id_usuario = <?= Sesion::obtener()->getId() ?>;
+        id_usuario = <?php if (Sesion::existe()){
+            Sesion::obtener()->getId();
+            } ?>;
 
         console.log(texto);
         console.log(id_noticia);

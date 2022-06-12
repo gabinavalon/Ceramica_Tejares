@@ -24,12 +24,15 @@ require '../app/model/Comentario.php';
 require '../app/model/ComentarioDAO.php';
 require '../app/model/Like.php';
 require '../app/model/LikeDAO.php';
+require '../app/model/Contacto.php';
+require '../app/model/ContactoDAO.php';
 require '../app/controller/ControladorArticulo.php';
 require '../app/controller/ControladorUsuario.php';
 require '../app/controller/ControladorAdmin.php';
 require '../app/controller/ControladorNoticia.php';
 require '../app/controller/ControladorGeneral.php';
 require '../app/config.php';
+
 
 
 //Enrutamiento
@@ -42,6 +45,7 @@ $mapa = array(
 
     'inicio' => array('controlador' => 'ControladorGeneral', 'metodo' => 'listar', 'publica' => true, 'admin' => false),
     'tecnicas' => array('controlador' => 'ControladorGeneral', 'metodo' => 'tecnicas', 'publica' => true, 'admin' => false),
+    'contacto' => array('controlador' => 'ControladorGeneral', 'metodo' => 'contacto', 'publica' => true, 'admin' => false),
 
     'noticias' => array('controlador' => 'ControladorNoticia', 'metodo' => 'listar_noticias', 'publica' => true, 'admin' => false),
     'ver_noticia' => array('controlador' => 'ControladorNoticia', 'metodo' => 'ver_noticia', 'publica' => true, 'admin' => false),
@@ -59,6 +63,9 @@ $mapa = array(
     'admin_usuarios' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_usuarios', 'publica' => false, 'admin' => true),
     'admin_articulos' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_articulos', 'publica' => false, 'admin' => true),
     'admin_noticias' => array('controlador' => 'ControladorAdmin', 'metodo' => 'admin_noticias', 'publica' => false, 'admin' => true),
+
+    'ver_contacto' => array('controlador' => 'ControladorAdmin', 'metodo' => 'ver_contacto', 'publica' => false, 'admin' => true),
+    'borrar_contacto' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar_contacto', 'publica' => false, 'admin' => true),
 
     
     'borrar_articulo' => array('controlador' => 'ControladorAdmin', 'metodo' => 'borrar_articulo', 'publica' => false, 'admin' => true),
