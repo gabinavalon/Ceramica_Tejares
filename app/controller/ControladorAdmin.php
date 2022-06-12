@@ -12,6 +12,10 @@ class ControladorAdmin
         $usuario = Sesion::obtener();
         $conn = ConexionBD::conectar();
 
+              //Generamos Token para seguridad del borrado
+              $_SESSION['token'] = md5(time() + rand(0, 999));
+              $token = $_SESSION['token'];
+
         if ($usuario->getRol() == 'admin') {
 
             $contactoDAO = new ContactoDAO($conn);

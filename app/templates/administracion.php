@@ -73,7 +73,7 @@ ob_start();
                 <?php endif; ?>
 
                 
-                <a href="<?= RUTA ?>borrar_contacto/<?= $contacto->getId() ?>" class="btn btn-danger">Eliminar</a>
+                <a href="<?= RUTA ?>borrar_contacto/<?= $contacto->getId() ?>/<?= $token ?>" class="btn btn-danger">Eliminar</a>
             </td>
 
     </tr>

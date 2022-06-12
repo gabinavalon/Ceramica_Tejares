@@ -133,7 +133,7 @@
                             <input type="file" name="foto" id="input_foto">
                             <input type="submit">
                         </form>
-                        <div id="datos_usuario"><?= Sesion::obtener()->getNombre() ?> <br><a href="logout">Cerrar sesión</a></div>
+                        <div id="datos_usuario"><?= Sesion::obtener()->getNombre() ?> <br><a href="<?= RUTA?>logout">Cerrar sesión</a></div>
                     </div>
                 <?php else : ?>
                     <form id="login" action="login" method="post" class="d-flex">

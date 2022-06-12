@@ -3,16 +3,7 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
-<link href="<?= RUTA ?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= RUTA ?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
 
-
-<script type="text/javascript">
-    $(function() {
-        $("#descripcion_noticia").jqte();
-    });
-</script>
 
 
 <section class="container">
@@ -22,14 +13,14 @@ ob_start();
             <input type="text" name="titulo_noticia" placeholder="Titulo..." value="<?php if (isset($noticia)) {
                                                                                         echo $noticia->getTitulo();
                                                                                     } ?>"><br> <br>
-            <label for="descripcion_noticia">Contenido de la noticia</label>
-            <textarea name="descripcion_noticia" id="descripcion_noticia"><?php if (isset($noticia)) {echo $noticia->getDescripcion();} ?></textarea>
+            <label for="descripcion_noticia">Contenido de la noticia</label> <br>
+            <textarea name="descripcion_noticia" id="descripcion_noticia" rows="10" cols="60"><?php if (isset($noticia)) {echo $noticia->getDescripcion();} ?></textarea> <br>
             <label for="foto_noticia">Imagen para la noticia</label><br>
             <?php if (isset($noticia)) {
                 echo "Debes subir de nuevo la foto anterior o una nueva <br>";
             } ?>
             <input type="file" name="foto_noticia" id="foto_noticia" accept="image/*"><br><br>
-     "
+     
             <input type="submit" value="Subir noticia">
         </form>
     <?php } else if ($gestion == 'articulos') { ?>

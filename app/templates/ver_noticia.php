@@ -70,6 +70,7 @@ ob_start();
 
     </div>
 </div>
+<?php if (Sesion::existe()) { ?>
 
 <script type="text/javascript">
     $('#borrar_comentario').click(function() {
@@ -98,9 +99,7 @@ ob_start();
 
         texto = $('#enviar_mensaje').val();
         id_noticia = <?= $noticia->getId() ?>;
-        id_usuario = <?php if (Sesion::existe()){
-            Sesion::obtener()->getId();
-            } ?>;
+        id_usuario = <?= Sesion::obtener()->getId();?>;
 
         console.log(texto);
         console.log(id_noticia);
@@ -128,7 +127,13 @@ ob_start();
     });
 </script>
 
-
+<?php }else{ ?>
+<script type="text/javascript">
+    $('#btn_enviar').click(function() {
+        alert("Debes iniciar sesión para comentar");
+    });
+</script>
+<?php } ?>
 
 
 <?php
