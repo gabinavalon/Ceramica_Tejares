@@ -442,7 +442,7 @@ a:focus {
   text-align: center;
   height: 45px;
   line-height: 45px;
-  background-color: #3a4468;
+  background-color: rgba(176,132,39,255);
   color: #ffffff;
   position: absolute;
   bottom: 50%;
@@ -456,7 +456,7 @@ a:focus {
 }
 
 .product_section .box .img-box .add_cart_btn:hover {
-  background-color: #f3c93e;
+  background-color: rgba(173,39,37,255);
   color: #ffffff;
 }
 
@@ -521,7 +521,7 @@ a:focus {
 .product_section .btn_box .view_more-link {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #f3c93e;
+  background-color: rgba(173,39,37,255);
   color: #ffffff;
   border-radius: 5px;
   border: 1px solid #f3c93e;
@@ -779,6 +779,8 @@ a:focus {
 .footer_section p a {
   color: inherit;
 }
+
+
 
 
 /*# sourceMappingURL=style.css.map */

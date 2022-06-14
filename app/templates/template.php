@@ -9,6 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/25ed4f2ff5.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martel:wght@200&display=swap" rel="stylesheet">
 
     <link href="<?= RUTA ?>web/css/responsive.css" rel="stylesheet" />
     <link href="<?= RUTA ?>web/css/style.css" rel="stylesheet" />
@@ -62,6 +65,11 @@
             margin: 5px;
         }
 
+        #foto_usuario:hover{
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
 
 
         .like:hover {
@@ -80,13 +88,70 @@
             height: 15vw;
             object-fit: cover;
         }
+
+        body {
+            font-family: 'Martel', serif;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+
+            background: hsla(1, 62%, 42%, 1);
+
+            background: linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
+
+            background: -moz-linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
+
+            background: -webkit-linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
+
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#AD2B28", endColorstr="#AD2B28", GradientType=1);
+        }
+
+        .titulo {
+            color: rgb(223, 208, 191) !important;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .titulo:hover {
+            color: rgb(177, 126, 120) !important;
+            transition: 0.5s;
+        }
+
+        .nav-link {
+            color: rgb(223, 208, 191) !important;
+        }
+
+        .nav-link:hover {
+            color: rgb(177, 126, 120) !important;
+
+        }
+
+        .carousel-caption{
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-noticia{
+
+            background-color: rgba(176,132,39,255);
+            border-color: rgba(176,132,39,255);
+        }
+
+        .btn-noticia:hover{
+            background-color: rgba(173,39,37,255);
+            border-color: rgba(176,132,39,255);
+        }
+
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="#">Cerámica Tejares</a>
+            <a class="navbar-brand mx-3 titulo" href="<?= RUTA ?>">Cerámica Tejares</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -133,7 +198,7 @@
                             <input type="file" name="foto" id="input_foto">
                             <input type="submit">
                         </form>
-                        <div id="datos_usuario"><?= Sesion::obtener()->getNombre() ?> <br><a href="<?= RUTA?>logout">Cerrar sesión</a></div>
+                        <div id="datos_usuario" class="nav-link"><?= Sesion::obtener()->getNombre() ?> <br><a href="<?= RUTA ?>logout">Cerrar sesión</a></div>
                     </div>
                 <?php else : ?>
                     <form id="login" action="login" method="post" class="d-flex">

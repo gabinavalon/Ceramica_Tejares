@@ -30,7 +30,7 @@ ob_start();
                     <?= substr($noticia->getDescripcion(), 0, 400) ?> ...
                 </p>
 
-                <a href="<?= RUTA ?>ver_noticia/<?= $noticia->getId() ?>" type="button" class="btn btn-primary">Leer</a>
+                <a href="<?= RUTA ?>ver_noticia/<?= $noticia->getId() ?>" type="button" class="btn btn-primary btn-noticia">Leer</a>
               </div>
             </div>
 

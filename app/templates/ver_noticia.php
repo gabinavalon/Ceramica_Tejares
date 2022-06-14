@@ -33,7 +33,7 @@ ob_start();
                         <div class="mb-4">
                             <textarea class="form-control enviar_mensaje" id='enviar_mensaje' rows="3" placeholder="¿Quiéres añadir un comentario?"></textarea>
                             <input type="hidden" id="id_noticia" value="<?= $noticia->getId() ?>">
-                            <button id="btn_enviar" class="btn btn-info mt-2">Enviar</button>
+                            <button id="btn_enviar" class="btn btn-info mt-2 btn-noticia">Enviar</button>
                         </div>
 
 
@@ -55,7 +55,7 @@ ob_start();
                                     
                                     <?= $c->getFecha() ?>
                                     <?php if (Sesion::existe()){
-                                            if($c->getUser()->getId() == Sesion::obtener()->getId()) { ?>
+                                            if($c->getUser()->getId() == Sesion::obtener()->getId() || Sesion::obtener()->getRol() == 'admin') { ?>
                                         <button class="btn btn-danger btn-sm    " id="borrar_comentario" data-id="<?= $c->getId() ?>">Eliminar</button>
                                     <?php }} ?>
                                 </div>
