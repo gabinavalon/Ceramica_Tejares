@@ -41,10 +41,10 @@ ob_start();
 
 
 
-<div class="container my-3">
+<div class="container">
     <h1 class=" my-3">Mails de contacto</h1>
 
-    <table class="table mx-5">
+    <table class="table-responsive">
     <thead>
         <tr>
             <th scope="col">#ID</th>
@@ -66,14 +66,14 @@ ob_start();
             <td><?= $contacto->getFecha() ?></td>
             <td>
                 <?php if ($contacto->getLeído() == 0) : ?>
-                    <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>" class="btn btn-primary">Ver (Sin leer)</a>
+                    <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>" class="btn btn-primary  btn-sm">Ver (Sin leer)</a>
 
                 <?php else : ?>
-                <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>"><button class="btn btn-secondary">Ver (Leído)</button></a>
+                <a href="<?= RUTA ?>ver_contacto/<?= $contacto->getId() ?>"><button class="btn btn-secondary  btn-sm">Ver (Leído)</button></a>
                 <?php endif; ?>
 
                 
-                <a href="<?= RUTA ?>borrar_contacto/<?= $contacto->getId() ?>/<?= $token ?>" class="btn btn-danger">Eliminar</a>
+                <a href="<?= RUTA ?>borrar_contacto/<?= $contacto->getId() ?>/<?= $token ?>" class="btn btn-danger  btn-sm">Eliminar</a>
             </td>
 
     </tr>

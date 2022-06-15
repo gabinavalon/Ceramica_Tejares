@@ -17,39 +17,44 @@ ob_start();
     </div>
 </div>
 
-<table class="table mx-5">
-    <thead>
-        <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Disponible</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($articulos as $articulo) : ?>
-            <tr>
-                <th scope="row"><?= $articulo->getId() ?></th>
-                <td class="nombre_articulo"><?= $articulo->getTitulo() ?></td>
-                <td><?= $articulo->getPrecio() ?> €</td>
-                <td>
-                    <?php if ($articulo->getReservado() == 0) : ?>
-                        Disponible
-                    <?php else : ?>
-                        No disponible
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <a href="<?= RUTA ?>ver_articulo/<?= $articulo->getId() ?>" class="btn btn-primary">Ver</a>
-                    <a href="<?= RUTA ?>editar_articulo/<?= $articulo->getId() ?>" class="btn btn-warning">Editar</a>
-                    <a href="<?= RUTA ?>borrar_articulo/<?= $articulo->getId() ?>/<?= $token ?>" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+<section class="container">
 
-    </tbody>
-</table>
+
+    <table class="table mx-5">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Disponible</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($articulos as $articulo) : ?>
+                <tr>
+                    <th scope="row"><?= $articulo->getId() ?></th>
+                    <td class="nombre_articulo"><?= $articulo->getTitulo() ?></td>
+                    <td><?= $articulo->getPrecio() ?> €</td>
+                    <td>
+                        <?php if ($articulo->getReservado() == 0) : ?>
+                            Disponible
+                        <?php else : ?>
+                            No disponible
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="<?= RUTA ?>ver_articulo/<?= $articulo->getId() ?>" class="btn btn-primary">Ver</a>
+                        <a href="<?= RUTA ?>editar_articulo/<?= $articulo->getId() ?>" class="btn btn-warning">Editar</a>
+                        <a href="<?= RUTA ?>borrar_articulo/<?= $articulo->getId() ?>/<?= $token ?>" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+    </table>
+
+</section>
 
 
 <?php

@@ -132,6 +132,33 @@ class ControladorAdmin
         header("Location: " . RUTA . "admin_usuarios");
     }
 
+    public function editar_usuario()
+    {
+        if (Sesion::existe() == false) {
+
+            header("Location: " . RUTA);
+            MensajesFlash::anadir_mensaje("Debes iniciar sesión para acceder a esta página y ser administrador.");
+            die();
+        } else {
+            if (Sesion::obtener()->getRol() != 'admin') {
+
+                header("Location: " . RUTA);
+                MensajesFlash::anadir_mensaje("Debes iniciar sesión para acceder a esta página y ser administrador.");
+                die();
+            }
+        }
+
+        $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $usuario = $usuarioDAO->find($id);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        }
+
+        $gestion = "usuarios";
+        require '../app/templates/gestion.php';
+
+    }
 
     // funciones de noticias
 
@@ -327,7 +354,7 @@ class ControladorAdmin
                     }
                 } //if(!$error)
 
-            MensajesFlash::anadir_mensaje("Se ha insertado la noticia correctamente");
+            MensajesFlash::anadir_mensaje("Se ha editado la noticia correctamente");
             header("Location: " . RUTA . "admin_noticias");
             die();
 
@@ -395,13 +422,15 @@ class ControladorAdmin
             $descripcion = filter_var($_POST['descripcion_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $titulo = filter_var($_POST['titulo_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $precio = filter_var($_POST['precio_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $disponible = filter_var($_POST['disponible'], FILTER_SANITIZE_SPECIAL_CHARS);
 
 
             $articulo->setDescripcion($descripcion);
             $articulo->setTitulo($titulo);
             $articulo->setPrecio($precio);
             $articulo->setLikes(0);
-            $articulo->setReservado(0);
+            $articulo->setReservado($disponible);
+
 
 
             $articuloDAO->insert($articulo);
@@ -489,25 +518,30 @@ class ControladorAdmin
             $conn = ConexionBD::conectar();
             //Insertamos la noticia en la BBDD
 
-            $noticiaNueva = new Noticia();
+            $articuloNuevo = new Articulo();
 
             //Filtramos datos de entrada
-            $descripcion = filter_var($_POST['descripcion_noticia'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $titulo = filter_var($_POST['titulo_noticia'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $descripcion = filter_var($_POST['descripcion_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $titulo = filter_var($_POST['titulo_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $precio = filter_var($_POST['precio_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $disponible = filter_var($_POST['disponible'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $noticiaNueva->setDescripcion($descripcion);
-            $noticiaNueva->setTitulo($titulo);
-            $noticiaNueva->setId($id);
+            $articuloNuevo->setDescripcion($descripcion);
+            $articuloNuevo->setTitulo($titulo);
+            $articuloNuevo->setPrecio($precio);
+            $articuloNuevo->setReservado($disponible);
 
-            $articuloDAO->update($noticiaNueva);
+            $articuloNuevo->setId($id);
+
+            $articuloDAO->update($articuloNuevo);
 
             //Validación de la foto
                 $error = false;
 
                 if (
-                    $_FILES['foto_noticia']['type']!= 'image/png' &&
-                    $_FILES['foto_noticia']['type']!= 'image/gif' &&
-                    $_FILES['foto_noticia']['type']!= 'image/jpeg'
+                    $_FILES['foto_articulo']['type']!= 'image/png' &&
+                    $_FILES['foto_articulo']['type']!= 'image/gif' &&
+                    $_FILES['foto_articulo']['type']!= 'image/jpeg'
                 ) {
                     MensajesFlash::anadir_mensaje("El archivo seleccionado no es una foto.");
                     $error = true;
@@ -524,28 +558,28 @@ class ControladorAdmin
                 if (!$error) {
 
                     $nombre_foto = md5(time() + rand(0, 999999));
-                    $extension_foto = substr($_FILES['foto_noticia']['name'], strrpos($_FILES['foto_noticia']['name'], '.') + 1);
+                    $extension_foto = substr($_FILES['foto_articulo']['name'], strrpos($_FILES['foto_articulo']['name'], '.') + 1);
                     //Limpiamos la extensión de la foto
                     $extension_foto = filter_var($extension_foto, FILTER_SANITIZE_SPECIAL_CHARS);
                     //Comprobamos que no exista ya una foto con el mismo nombre, si existe calculamos uno nuevo
-                    while (file_exists("img/noticias/$nombre_foto.$extension_foto")) {
+                    while (file_exists("img/articulos/$nombre_foto.$extension_foto")) {
                         $nombre_foto = md5(time() + rand(0, 999999));
                     }
                     //movemos la foto a la carpeta que queramos guardarla y con el nuevo nombre
                     
-                    move_uploaded_file($_FILES['foto_noticia']['tmp_name'],"img/noticias/$nombre_foto.$extension_foto");
+                    move_uploaded_file($_FILES['foto_articulo']['tmp_name'],"img/articulos/$nombre_foto.$extension_foto");
 
  
                     $nombre_archivo = "$nombre_foto.$extension_foto";
-                    $noticiaNueva->setFoto($nombre_archivo);
+                    $articuloNuevo->setFoto($nombre_archivo);
 
-                    if (!$articuloDAO->update($noticiaNueva)) {
+                    if (!$articuloDAO->update($articuloNuevo)) {
                         die("Error al insertar la foto en la BD");
                     }
                 } //if(!$error)
 
-            MensajesFlash::anadir_mensaje("Se ha insertado la noticia correctamente");
-            header("Location: " . RUTA . "admin_noticias");
+            MensajesFlash::anadir_mensaje("Se ha modificado el articulo correctamente");
+            header("Location: " . RUTA . "admin_articulos");
             die();
 
 

@@ -140,7 +140,7 @@ ob_start();
   <section class="col-8">
 
     <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contacta con nosotras</h2>
+    <h2 class="h1-responsive font-weight-bold text-center my-4" id="contacto">Contacta con nosotras</h2>
     <!--Section description-->
     <p class="text-center w-responsive mx-auto mb-5">¿Tienes alguna pregunta? Por favor, no dudes en ponerte en contacto con nosotros. Puedes llamarnos, hablarnos por instagram, o bien rellenar este formulario de contacto.
     </p>
@@ -217,7 +217,7 @@ ob_start();
             <p>Albacete, Calle Tejares 17, 02002 </p>
           </li>
 
-          <li><i class="fas fa-heart fa-2x"></i>
+          <li><i class="fab fa-instagram fa-2x"></i>
             <p>@ceramicatejares</p>
           </li>
 

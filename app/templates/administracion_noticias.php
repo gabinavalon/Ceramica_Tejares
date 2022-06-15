@@ -17,6 +17,10 @@ ob_start();
     </div>
 </div>
 
+<section class="container">
+
+
+
 <table class="table mx-5">
     <thead>
         <tr>
@@ -42,6 +46,8 @@ ob_start();
 
     </tbody>
 </table>
+
+</section>
 <?php
     $contenido = ob_get_clean();
 

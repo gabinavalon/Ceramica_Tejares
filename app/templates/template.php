@@ -15,137 +15,9 @@
 
     <link href="<?= RUTA ?>web/css/responsive.css" rel="stylesheet" />
     <link href="<?= RUTA ?>web/css/style.css" rel="stylesheet" />
-
-    <style type="text/css">
-        .card-registration .select-input.form-control[readonly]:not([disabled]) {
-            font-size: 1rem;
-            line-height: 2.15;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
-
-        .card-registration .select-arrow {
-            top: 13px;
-        }
-
-        .carousel .carousel-item {
-            height: 400px;
-        }
-
-        .carousel-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-height: 400px;
-        }
-
-        .filtro {
-            display: none !important;
-        }
-
-        #cruz,
-        #tick,
-        #preloader {
-            height: 25px;
-            vertical-align: middle;
-            display: none;
-        }
-
-        #formulario_actualizar_foto {
-            display: none;
-        }
-
-        #foto_usuario {
-            height: 50px;
-            width: 50px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 40px;
-            box-shadow: 0px 0px 5px 0px #aaa;
-            margin: 5px;
-        }
-
-        #foto_usuario:hover{
-            cursor: pointer;
-            opacity: 0.7;
-        }
+    <link href="<?= RUTA ?>web/css/style-custom.css" rel="stylesheet" />
 
 
-
-        .like:hover {
-            color: red !important;
-            transition: 0.3s;
-        }
-
-        .like2:hover {
-            color: red !important;
-            font-size: 1.5em;
-            transition: 0.3s;
-        }
-
-        .card-img-top {
-            width: 100%;
-            height: 15vw;
-            object-fit: cover;
-        }
-
-        body {
-            font-family: 'Martel', serif;
-            background-color: #f5f5f5;
-        }
-
-        .navbar {
-
-            background: hsla(1, 62%, 42%, 1);
-
-            background: linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
-
-            background: -moz-linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
-
-            background: -webkit-linear-gradient(180deg, hsla(1, 62%, 42%, 1) 0%, hsla(1, 62%, 42%, 1) 0%, hsla(25, 82%, 17%, 1) 100%);
-
-            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#AD2B28", endColorstr="#AD2B28", GradientType=1);
-        }
-
-        .titulo {
-            color: rgb(223, 208, 191) !important;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .titulo:hover {
-            color: rgb(177, 126, 120) !important;
-            transition: 0.5s;
-        }
-
-        .nav-link {
-            color: rgb(223, 208, 191) !important;
-        }
-
-        .nav-link:hover {
-            color: rgb(177, 126, 120) !important;
-
-        }
-
-        .carousel-caption{
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .btn-noticia{
-
-            background-color: rgba(176,132,39,255);
-            border-color: rgba(176,132,39,255);
-        }
-
-        .btn-noticia:hover{
-            background-color: rgba(173,39,37,255);
-            border-color: rgba(176,132,39,255);
-        }
-
-    </style>
 </head>
 
 <body>
@@ -220,6 +92,108 @@
     <main class="mt-5">
         <?= $contenido ?>
     </main>
+
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-3">
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Conéctate con nuestras redes sociales:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="https://www.facebook.com/TalleEstudioCeramicaTejares/" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/ceramicatejares/?hl=es" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/gabinavalon/Ceramica_Tejares" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Cerámica Tejares
+          </h6>
+          <p>
+            Aquí puedes ver un mapa de la página web y ver las distintas formas de contacto. 
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="<?= RUTA ?>catalogo" class="text-reset">Catálogo</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+           Links de interés
+          </h6>
+          <p>
+            <a href="<?= RUTA ?>tecnicas" class="text-reset">Técnicas y Actividades</a>
+          </p>
+          <p>
+            <a href="<?= RUTA ?>noticias" class="text-reset">Noticias</a>
+          </p>
+          <p>
+            <a href="<?= RUTA ?>#contacto" class="text-reset">Contacto</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Ayuda</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Albacete, Calle Tejares 17, 02002 </p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            ceramicatejares@gmail.com
+          </p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+</footer>
+<!-- Footer -->
+
 </body>
 
 <script type="text/javascript">
