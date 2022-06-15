@@ -11,9 +11,6 @@ si se encuentra el horario disponible, al igual que hacer pedidos o reservar los
 para su pago y recogida en tienda (debido a la fragilidad de los productos, la venta web
 será solo para reservas, ya que la venta debe ser en persona)
 
-Además de eso, se incorporará un tercer tipo de usuario, estudiante. Cada estudiante que
-se apunte a las clases de cerámica o mosaico podrá compartir sus trabajos, sus experiencias
-enriqueciendo así la experiencia y dando información para el futuro alumnado.
 
 Las estructura de la web serán la siguiente (provisionalmente):
 
@@ -23,16 +20,16 @@ Las estructura de la web serán la siguiente (provisionalmente):
     - Ver producto
     - Contacto
     - Noticias
+    - Ver noticia
     - Técnicas y materiales
-    - Experiencias de estudiantes (valoriaciones, opiniones, fotos...)
+
 
 //Acceso registrado
 
     - Perfil (+estudiante: publicaciones con experiencias)
-    - Reserva de clases
     - Compra/reserva de productos
 
 //Acceso administración
 
-    - Alta, baja, modificación y gestión de calendario, noticias, registros y productos
+    - Alta, baja, modificación y gestión de comentarios, usuarios articulos, noticias...
     

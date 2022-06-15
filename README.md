@@ -10,9 +10,9 @@ sobre los eventos y/o actividades para dicho taller.
 
 Se añadirá un sistema de gestión, donde la administración podrá
 controlar el stock y los nuevos productos al igual que añadir noticias. Las personas usuarias 
-registrados como clientes podrán ponerse en contacto con la empresa, apuntarse a clases
-si se encuentra el horario disponible, al igual que hacer pedidos o reservar los productos
-para su pago y recogida en tienda (debido a la fragilidad de los productos, la venta web
+registrados como clientes podrán ponerse en contacto con la empresa, comentar en las noticias, 
+al igual que dar me gusta a los productos
+(debido a la fragilidad de los productos, la venta web
 será solo para reservas, ya que la venta debe ser en persona)
 
 ### Tecnologías
@@ -39,22 +39,21 @@ Las estructura de la web serán la siguiente (provisionalmente):
     - Ver producto
     - Contacto
     - Noticias
+    - Ver noticia
     - Técnicas y materiales
-    - Experiencias de estudiantes (valoriaciones, opiniones, fotos...)
 
 //Acceso registrado
 
-    - Perfil (+estudiante: publicaciones con experiencias)
-    - Reserva de clases
-    - Compra/reserva de productos
+    - Comentarios
+    - Me gusta a artículos
 
 //Acceso administración
 
-    - Alta, baja, modificación y gestión de calendario, noticias, registros y productos
+    - Alta, baja, modificación y gestión de artículos, noticias, usuarios y comentarios
 
 ## Despliegue
 
-Todo
+    Se ha desplegado en un servidor Nginx : https://ceramicatejares.web23.ovh/
 
 ## Autor
 
