@@ -37,10 +37,10 @@ ob_start();
                                                                                 echo $articulo->getDescripcion();
                                                                             } ?></textarea> <br>
             <select name="disponibilidad">
-                <option value="1" <?php if (isset($articulo) && $articulo->getReservado() == 0) {
+                <option value="0" <?php if (isset($articulo) && $articulo->getReservado() == 0) {
                                         echo "selected";
                                     } ?>>Disponible</option>
-                <option value="0" <?php if (isset($articulo) && $articulo->getReservado() == 1) {
+                <option value="1" <?php if (isset($articulo) && $articulo->getReservado() == 1) {
                                         echo "selected";
                                     } ?>>No disponible</option>
             </select> <br>

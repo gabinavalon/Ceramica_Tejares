@@ -422,7 +422,7 @@ class ControladorAdmin
             $descripcion = filter_var($_POST['descripcion_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $titulo = filter_var($_POST['titulo_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $precio = filter_var($_POST['precio_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $disponible = filter_var($_POST['disponible'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $disponible = filter_var($_POST['disponibilidad'], FILTER_SANITIZE_SPECIAL_CHARS);
 
 
             $articulo->setDescripcion($descripcion);
@@ -524,7 +524,7 @@ class ControladorAdmin
             $descripcion = filter_var($_POST['descripcion_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $titulo = filter_var($_POST['titulo_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
             $precio = filter_var($_POST['precio_articulo'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $disponible = filter_var($_POST['disponible'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $disponible = filter_var($_POST['disponibilidad'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $articuloNuevo->setDescripcion($descripcion);
             $articuloNuevo->setTitulo($titulo);
@@ -548,7 +548,7 @@ class ControladorAdmin
                     header("Location: " . RUTA);
                     die();
                 }
-                if ($_FILES['foto']['size'] > 100000000) {
+                if ($_FILES['foto_articulo']['size'] > 100000000) {
                     MensajesFlash::anadir_mensaje("El archivo seleccionado es demasiado grande.");
                     $error = true;
                     header("Location: " . RUTA);
@@ -574,7 +574,7 @@ class ControladorAdmin
                     $articuloNuevo->setFoto($nombre_archivo);
 
                     if (!$articuloDAO->update($articuloNuevo)) {
-                        die("Error al insertar la foto en la BD");
+                        die("Error al insertar el artículo en la BD");
                     }
                 } //if(!$error)
 
