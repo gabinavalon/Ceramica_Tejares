@@ -32,9 +32,8 @@ ob_start();
                     <td><?= $usuario->getEmail() ?></td>
                     <td><?= $usuario->getTelefono() ?></td>
                     <td>
-                        <a href="<?= RUTA ?>editar_usuario/<?= $usuario->getId() ?>" class="btn btn-primary  btn-sm">Editar</a>
                         <a href="<?= RUTA ?>borrar_usuario/<?= $usuario->getId() ?>/<?= $token ?>" class="btn btn-danger  btn-sm">Borrar</a>
-                    </td>
+                    </td>S
                 </tr>
             <?php } ?>
 
